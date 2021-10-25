@@ -4,7 +4,7 @@
 
   This is currently using AWS DynamoDb
 
-  For the files to work you must setup a DynamoDb table the table
+  For the project to work you must setup a DynamoDb table the table
 
     Set the table name to whatever is preferred
     When setting up the DynamoDb make sure you set the following properties
