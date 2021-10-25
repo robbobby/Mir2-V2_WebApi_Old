@@ -1,7 +1,8 @@
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.Runtime;
-namespace Mir2_v2_WebApi.Helpers {
+using Mir2_v2_WebApi.Helpers;
+namespace Mir2_v2_WebApi.DynamoDb {
     public class DynamoHelper {
         
         public static string DatabaseName { get; private set; }

@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Mir2_v2_WebApi.Helpers;
-using Newtonsoft.Json.Linq;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -20,11 +18,11 @@ namespace Mir2_V2_WebApi_Tests {
 
         [Fact]
         public void CanGetDatabaseJToken() {
-            var JTokenString = ReadConfig.GetDatabaseConfigJToken().ToString();
-            Assert.Contains("database", JTokenString);
-            Assert.Contains("name", JTokenString);
-            Assert.Contains("awsKeyFile", JTokenString);
-            Assert.DoesNotContain("awsKeyFila", JTokenString);
+            var jTokenString = ReadConfig.GetDatabaseConfigJToken().ToString();
+            Assert.Contains("database", jTokenString);
+            Assert.Contains("name", jTokenString);
+            Assert.Contains("awsKeyFile", jTokenString);
+            Assert.DoesNotContain("awsKeyFila", jTokenString);
         }
         
         [Fact] // Copy the credentials in the json file to the tests

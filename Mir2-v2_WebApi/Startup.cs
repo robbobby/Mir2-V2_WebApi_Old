@@ -1,60 +1,53 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Mir2_v2_WebApi.Helpers;
+using Mir2_v2_WebApi.DynamoDb;
 
 namespace Mir2_v2_WebApi {
     public class Startup {
-        public Startup(IConfiguration configuration) {
-            Configuration = configuration;
+        public Startup(IConfiguration _configuration) {
+            Configuration = _configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services) {
+        public void ConfigureServices(IServiceCollection _services) {
 
-            services.AddControllers();
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new OpenApiInfo {
+            _services.AddControllers();
+            _services.AddSwaggerGen(_c => {
+                _c.SwaggerDoc("v1", new OpenApiInfo {
                     Title = "Mir2_v2_WebApi",
                     Version = "v1"
                 });
             });
             
 
-            services.AddSingleton<IAmazonDynamoDB>(DynamoHelper.GetClient());
-            services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
+            _services.AddSingleton<IAmazonDynamoDB>(DynamoHelper.GetClient());
+            _services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-            if (env.IsDevelopment()) {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mir2_v2_WebApi v1"));
+        public void Configure(IApplicationBuilder _app, IWebHostEnvironment _env) {
+            if (_env.IsDevelopment()) {
+                _app.UseDeveloperExceptionPage();
+                _app.UseSwagger();
+                _app.UseSwaggerUI(_config => _config.SwaggerEndpoint("/swagger/v1/swagger.json", "Mir2_v2_WebApi v1"));
             }
 
-            app.UseHttpsRedirection();
+            _app.UseHttpsRedirection();
 
-            app.UseRouting();
+            _app.UseRouting();
 
-            app.UseAuthorization();
+            _app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => {
-                endpoints.MapControllers();
+            _app.UseEndpoints(_endpoints => {
+                _endpoints.MapControllers();
             });
         }
     }

@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2.DataModel;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Mir2_v2_WebApi.Helpers;
+using Mir2_v2_WebApi.DynamoDb;
 using Mir2_v2_WebApi.Model;
 namespace Mir2_v2_WebApi.Controllers {
 

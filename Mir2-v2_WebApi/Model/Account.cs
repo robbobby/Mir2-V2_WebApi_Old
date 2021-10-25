@@ -1,5 +1,4 @@
 using Amazon.DynamoDBv2.DataModel;
-using Amazon.DynamoDBv2.Model;
 using Mir2_v2_WebApi.DynamoDb;
 namespace Mir2_v2_WebApi.Model {
     public class Account : IDynamoDbEntry {

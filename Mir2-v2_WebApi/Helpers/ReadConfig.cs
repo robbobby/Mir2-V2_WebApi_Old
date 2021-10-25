@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 namespace Mir2_v2_WebApi.Helpers {
@@ -79,6 +78,5 @@ namespace Mir2_v2_WebApi.Helpers {
     public enum DatabaseLogin {
         AccessKey,
         SecretKey,
-        
     }
 }
