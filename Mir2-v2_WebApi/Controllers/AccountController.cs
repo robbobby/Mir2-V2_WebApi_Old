@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Amazon.DynamoDBv2.DataModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Mir2_v2_WebApi.Helpers;
 using Mir2_v2_WebApi.Model;
 namespace Mir2_v2_WebApi.Controllers {
 
@@ -11,8 +12,10 @@ namespace Mir2_v2_WebApi.Controllers {
     [Route("[controller]")]
     public class AccountController {
         private readonly IDynamoDBContext dbContext;
-        private readonly DynamoDBOperationConfig dbConfig = new DynamoDBOperationConfig() { OverrideTableName = "Mir2-V2_Database"};
-        
+        private readonly DynamoDBOperationConfig dbConfig = new DynamoDBOperationConfig() {
+            OverrideTableName = DynamoHelper.DatabaseName
+        };
+
         public AccountController(IDynamoDBContext _dbContext) {
             dbContext = _dbContext;
         }
@@ -26,7 +29,7 @@ namespace Mir2_v2_WebApi.Controllers {
         [HttpPost]
         public async Task PostAccount(int _accountId) {
             await dbContext.SaveAsync(new Account() {
-                AccountId = _accountId
+                Id = _accountId.ToString()
             }, dbConfig);
         }
     }

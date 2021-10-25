@@ -4,8 +4,11 @@ using Amazon.Runtime;
 namespace Mir2_v2_WebApi.Helpers {
     public class DynamoHelper {
         
+        public static string DatabaseName { get; private set; }
+        
         public static IAmazonDynamoDB GetClient() {
             var databaseInfo = ReadConfig.GetDatabaseInfo();
+            DatabaseName = databaseInfo[DatabaseSettings.Name];
             return new AmazonDynamoDBClient(DynamoCredentials(databaseInfo[DatabaseSettings.AwsKeyFilePath]), GetDynamoConfig());
         }
         
