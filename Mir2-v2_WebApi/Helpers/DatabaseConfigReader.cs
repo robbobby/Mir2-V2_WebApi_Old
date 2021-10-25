@@ -7,7 +7,7 @@ namespace Mir2_v2_WebApi.Helpers {
     
     // TODO: Handle errors that may come from the correct data not been in the JSON
     
-    public static class ReadConfig { 
+    public static class DatabaseConfigReader { 
         private static readonly string ConfigFilePath = Path.Combine(Environment.CurrentDirectory, "DevelopmentConfig.json");
 
         public static string ReadFile(string _path = "") {
@@ -16,7 +16,7 @@ namespace Mir2_v2_WebApi.Helpers {
             return File.ReadAllText(_path);
         }
 
-        public static Dictionary<DatabaseSettings, string> GetDatabaseInfo() {
+        public static Dictionary<DatabaseSettings, string> GetDatabaseConnectionDetails() {
             var databaseDetails = new Dictionary<DatabaseSettings, string>() {
                 { DatabaseSettings.Name, "" },
                 { DatabaseSettings.AwsKeyFilePath, "" }

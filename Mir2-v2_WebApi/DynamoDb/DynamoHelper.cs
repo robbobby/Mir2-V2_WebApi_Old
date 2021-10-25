@@ -8,7 +8,7 @@ namespace Mir2_v2_WebApi.DynamoDb {
         public static string DatabaseName { get; private set; }
         
         public static IAmazonDynamoDB GetClient() {
-            var databaseInfo = ReadConfig.GetDatabaseInfo();
+            var databaseInfo = DatabaseConfigReader.GetDatabaseConnectionDetails();
             DatabaseName = databaseInfo[DatabaseSettings.Name];
             return new AmazonDynamoDBClient(DynamoCredentials(databaseInfo[DatabaseSettings.AwsKeyFilePath]), GetDynamoConfig());
         }
@@ -21,7 +21,7 @@ namespace Mir2_v2_WebApi.DynamoDb {
         }
         
         private static AWSCredentials DynamoCredentials(string _filePath) {
-            var loginDetails = ReadConfig.GetAwsAccessKey(_filePath);
+            var loginDetails = DatabaseConfigReader.GetAwsAccessKey(_filePath);
             return new BasicAWSCredentials(loginDetails[DatabaseLogin.AccessKey], 
                 loginDetails[DatabaseLogin.SecretKey]);
         }
