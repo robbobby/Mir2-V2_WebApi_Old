@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Mir2_v2_WebApi.Secret;
+using Mir2_v2_WebApi.Helpers;
 
 namespace Mir2_v2_WebApi {
     public class Startup {

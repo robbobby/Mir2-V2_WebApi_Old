@@ -12,7 +12,6 @@ namespace Mir2_v2_WebApi.Controllers {
     public class AccountController {
         private readonly IDynamoDBContext dbContext;
         private readonly DynamoDBOperationConfig dbConfig = new DynamoDBOperationConfig() { OverrideTableName = "Mir2-V2_Database"};
-
         
         public AccountController(IDynamoDBContext _dbContext) {
             dbContext = _dbContext;
