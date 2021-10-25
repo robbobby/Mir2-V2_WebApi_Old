@@ -27,7 +27,7 @@ Make a new json file somewhere on your computer that is safe and not in a remote
 Next we need to insert the details into the applications config. We need the name of the database you made on AWS.
 Also we need the path of the file you have just, put the details into the DevelopmentConfig file inside of the project
 
-### Please note that if you are using windows the path to the file will contain '\\', this may act as a escape character when c# reads it so whenever you see a '\\' in your path please change it to '\\\\'
+#### Please note that if you are using windows the path to the file will contain '\\', this may act as a escape character when c# reads it so whenever you see a '\\' in your path please change it to '\\\\'
   
 ```json
     {
