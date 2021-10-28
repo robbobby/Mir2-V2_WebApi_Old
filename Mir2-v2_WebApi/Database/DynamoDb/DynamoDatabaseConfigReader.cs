@@ -4,10 +4,10 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 namespace Mir2_v2_WebApi.Helpers {
-    
+
     // TODO: Handle errors that may come from the correct data not been in the JSON
-    
-    public static class DatabaseConfigReader { 
+
+    public static class DynamoDatabaseConfigReader {
         private static readonly string ConfigFilePath = Path.Combine(Environment.CurrentDirectory, "DevelopmentConfig.json");
 
         public static string ReadFile(string _path = "") {
@@ -17,7 +17,7 @@ namespace Mir2_v2_WebApi.Helpers {
         }
 
         public static Dictionary<DatabaseSettings, string> GetDatabaseConnectionDetails() {
-            var databaseDetails = new Dictionary<DatabaseSettings, string>() {
+            var databaseDetails = new Dictionary<DatabaseSettings, string> {
                 { DatabaseSettings.Name, "" },
                 { DatabaseSettings.AwsKeyFilePath, "" }
             };
@@ -29,7 +29,7 @@ namespace Mir2_v2_WebApi.Helpers {
             databaseDetails[DatabaseSettings.AwsKeyFilePath] = response[1];
             return databaseDetails;
         }
-        
+
         public static JToken GetDatabaseConfigJToken(string _path = "") {
             if (_path == "")
                 _path = ConfigFilePath;
@@ -60,7 +60,7 @@ namespace Mir2_v2_WebApi.Helpers {
                 secretKey = awsAccessCredentials["DynamoDbAccess"]?["SecretKey"]?.ToString();
             }
 
-            return new Dictionary<DatabaseLogin, string>() {
+            return new Dictionary<DatabaseLogin, string> {
                 { DatabaseLogin.AccessKey, accessKey },
                 { DatabaseLogin.SecretKey, secretKey }
             };
@@ -72,11 +72,11 @@ namespace Mir2_v2_WebApi.Helpers {
     public enum DatabaseSettings {
         Name,
         AwsKeyFilePath,
-        RegionEndpoint,
+        RegionEndpoint
     }
 
     public enum DatabaseLogin {
         AccessKey,
-        SecretKey,
+        SecretKey
     }
 }

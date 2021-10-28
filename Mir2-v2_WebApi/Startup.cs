@@ -1,13 +1,13 @@
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Mir2_v2_WebApi.DynamoDb;
-
+using Mir2_v2_WebApi.Broker;
+using Mir2_v2_WebApi.Helpers.InjectionHandlers;
+using Mir2_v2_WebApi.InjectionHandlers;
 namespace Mir2_v2_WebApi {
     public class Startup {
         public Startup(IConfiguration _configuration) {
@@ -26,10 +26,9 @@ namespace Mir2_v2_WebApi {
                     Version = "v1"
                 });
             });
-            
+            _services.AddDbContext<AccountBroker>(_context => _context.UseNpgsql(Configuration.GetConnectionString("LocalPostgresConnection")));
 
-            _services.AddSingleton<IAmazonDynamoDB>(DynamoHelper.GetClient());
-            _services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
+            // InjectionHandler.AccountDbInjectionHandler.SetDatabaseInjection(_services, Configuration, DbProvider.LocalPostgres);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
