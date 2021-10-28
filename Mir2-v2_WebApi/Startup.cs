@@ -27,8 +27,8 @@ namespace Mir2_v2_WebApi {
                 });
             });
             _services.AddDbContext<AccountBroker>(_context => _context.UseNpgsql(Configuration.GetConnectionString("LocalPostgresConnection")));
-
-            // InjectionHandler.AccountDbInjectionHandler.SetDatabaseInjection(_services, Configuration, DbProvider.LocalPostgres);
+            
+            InjectionHandler.AccountDbInjectionHandler.SetDatabaseInjection(_services, Configuration, DbProvider.LocalPostgres);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

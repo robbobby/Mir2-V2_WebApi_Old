@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Mir2_v2_WebApi.Migrations
 {
     [DbContext(typeof(AccountBroker))]
-    [Migration("20211028122450_InitialMigration")]
+    [Migration("20211028131735_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,8 +53,14 @@ namespace Mir2_v2_WebApi.Migrations
                     b.Property<string>("AccountId")
                         .HasColumnType("text");
 
+                    b.Property<int>("CharacterClass")
+                        .HasColumnType("integer");
+
                     b.Property<int>("EntryTypeId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

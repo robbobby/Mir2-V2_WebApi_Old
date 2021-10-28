@@ -7,6 +7,7 @@ using Mir2_v2_WebApi.Database;
 using Mir2_v2_WebApi.Database.AzurePostgres;
 using Mir2_v2_WebApi.Database.DynamoDb;
 using Mir2_v2_WebApi.InjectionHandlers;
+using Newtonsoft.Json.Linq;
 namespace Mir2_v2_WebApi.Helpers.InjectionHandlers {
     public class AccountDbInjectionHandler {
 
@@ -29,7 +30,9 @@ namespace Mir2_v2_WebApi.Helpers.InjectionHandlers {
         }
         private void InjectAzurePostgres(IServiceCollection _services, IConfiguration _configuration) {
             // // _services.AddSingleton<IDataAccess, AzurePostgresAccountRepository>();
-            var connectionString = _configuration.GetConnectionString("LocalPostgresConnection");
+            JToken dbConnSettings = _configuration.GetValue<JToken>("database.postgres-dev");
+            
+            var connectionString = $"server={dbConnSettings["server"]};database={dbConnSettings["name"]};Port={dbConnSettings["port"]};user id={dbConnSettings["username"]}; password={dbConnSettings["password"]};pooling=true;";
             _services.AddDbContext<AccountBroker>(_context => _context.UseNpgsql(connectionString));
             // _services.AddSingleton<IDataAccess, DynamoDbAccountRepository>();
         }

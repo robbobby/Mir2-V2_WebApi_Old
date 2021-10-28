@@ -51,8 +51,14 @@ namespace Mir2_v2_WebApi.Migrations
                     b.Property<string>("AccountId")
                         .HasColumnType("text");
 
+                    b.Property<int>("CharacterClass")
+                        .HasColumnType("integer");
+
                     b.Property<int>("EntryTypeId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

@@ -28,7 +28,9 @@ namespace Mir2_v2_WebApi.Migrations
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
                     AccountId = table.Column<string>(type: "text", nullable: true),
-                    EntryTypeId = table.Column<int>(type: "integer", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    EntryTypeId = table.Column<int>(type: "integer", nullable: false),
+                    CharacterClass = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
